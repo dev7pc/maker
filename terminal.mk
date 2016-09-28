@@ -1,0 +1,58 @@
+SHELL = /bin/bash
+
+TERM_ANSI_BLACK = 0
+TERM_ANSI_RED = 1
+TERM_ANSI_GREEN = 2
+TERM_ANSI_YELLOW = 3
+TERM_ANSI_BLUE = 4
+TERM_ANSI_MAGENTA = 5
+TERM_ANSI_CYAN = 6
+TERM_ANSI_WHITE = 7
+TERM_NUM_LINES := $$(tput lines)
+TERM_NUM_COLUMNS := $$(tput cols)
+TERM_CURSOR_SAVE := $$(tput sc)
+TERM_CURSOR_RESTORE := $$(tput rc)
+TERM_CURSOR_BACK := $$(tput cub1)
+TERM_CURSOR_BACK_N = $$(tput cub '$1')
+TERM_CURSOR_FORWARD := $$(tput cuf1)
+TERM_CURSOR_FORWARD_N = $$(tput cuf '$1')
+TERM_CLEAR := $$(tput clear)
+TERM_ERASE_TO_LINE_START := $$(tput el1)
+TERM_ERASE_TO_LINE_END := $$(tput el)
+TERM_ERASE_TO_SCREEN_END := $$(tput ed)
+TERM_ATTR_RESET := $$(tput sgr0)
+TERM_SET_FG = $$(tput setaf '$1')
+TERM_SET_BG = $$(tput setab '$1')
+TERM_UNDERLINE := $$(tput smul)
+TERM_NO_UNDERLINE := $$(tput rmul)
+TERM_STANDOUT := $$(tput smso)
+TERM_NO_STANDOUT := $$(tput rmso)
+
+TERM_FG_BLACK = $(call TERM_SET_FG,$(TERM_ANSI_BLACK))$(1)$(TERM_ATTR_RESET)
+TERM_FG_RED = $(call TERM_SET_FG,$(TERM_ANSI_RED))$(1)$(TERM_ATTR_RESET)
+TERM_FG_GREEN = $(call TERM_SET_FG,$(TERM_ANSI_GREEN))$(1)$(TERM_ATTR_RESET)
+TERM_FG_YELLOW = $(call TERM_SET_FG,$(TERM_ANSI_YELLOW))$(1)$(TERM_ATTR_RESET)
+TERM_FG_BLUE = $(call TERM_SET_FG,$(TERM_ANSI_BLUE))$(1)$(TERM_ATTR_RESET)
+TERM_FG_MAGENTA = $(call TERM_SET_FG,$(TERM_ANSI_MAGENTA))$(1)$(TERM_ATTR_RESET)
+TERM_FG_CYAN = $(call TERM_SET_FG,$(TERM_ANSI_CYAN))$(1)$(TERM_ATTR_RESET)
+TERM_FG_WHITE = $(call TERM_SET_FG,$(TERM_ANSI_WHITE))$(1)$(TERM_ATTR_RESET)
+
+TERM_ERROR = $(TERM_FG_RED)
+TERM_SUCCESS = $(TERM_FG_GREEN)
+TERM_WARNING = $(TERM_FG_YELLOW)
+TERM_STATUS = $(TERM_FG_CYAN)
+
+STATUS = @/bin/echo -n $(call TERM_STATUS,$(1) )
+FAIL = @echo $(call TERM_ERROR,'FAIL')
+DONE = @echo $(call TERM_SUCCESS,'DONE')
+SKIP = @echo $(call TERM_WARNING,'SKIP')
+
+ERROR = $(info $(shell echo $(TERM_ERROR)))$(error $(2))
+SUCCESS = $(info $(shell echo $(TERM_SUCCESS)))
+WARNING = $(info $(shell echo $(TERM_WARNING)))
+
+#STATUS = @/bin/echo -n $(call TERM_SET_FG,$(ANSI_CYAN))'$(SELF): $(1)...'$(TERM_ATTR_RESET)
+#DONE = @echo $(call SUCCESS,' DONE')
+#FAIL = @echo $(call FAILURE,' FAIL')
+#WARNING = @echo $(call TERM_SET_FG,$(ANSI_YELLOW))$(TERM_UNDERLINE)'Warning'$(TERM_NO_UNDERLINE)': '$(1)$(TERM_ATTR_RESET)
+#ERROR = @echo $(call TERM_SET_FG,$(ANSI_RED))$(TERM_UNDERLINE)'Error'$(TERM_NO_UNDERLINE)': '$(1)$(TERM_ATTR_RESET)
