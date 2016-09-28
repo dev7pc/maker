@@ -71,7 +71,7 @@ define COMPOSER_JSON
 		}
 	],
 	"require": {
-		"php": "^7.0"
+		"php": ">=5.6.0"
 	},
 	"require-dev": {
 	},
