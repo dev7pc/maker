@@ -3,7 +3,7 @@ SHELL = /bin/bash
 DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 COMPOSER_FILENAME ?= composer.phar
-COMPOSER_VERSION ?= 1.1.2
+COMPOSER_VERSION ?= 1.2.1
 
 COMPOSER_INSTALLER_URL = https://getcomposer.org/installer
 COMPOSER_INSTALLER_CHECKSUM_URL = https://composer.github.io/installer.sig
