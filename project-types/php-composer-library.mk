@@ -64,12 +64,6 @@ define COMPOSER_JSON
 	"description": "$(notdir $(realpath ./))",
 	"license": "Unlicense",
 	"name": "sevenpercent/$(notdir $(realpath ./))",
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://packages.sevenpercent.solutions/"
-		}
-	],
 	"require": {
 		"php": ">=5.6.0"
 	},
