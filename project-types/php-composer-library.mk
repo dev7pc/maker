@@ -11,6 +11,7 @@ include $(DIR)../terminal.mk
 include $(DIR)../components/authors.mk
 include $(DIR)../components/changelog.mk
 include $(DIR)../components/composer.mk
+include $(DIR)../components/phpunit.mk
 include $(DIR)../components/unlicense.mk
 
 $(PROJECT_TYPE): setup-message setup
@@ -37,12 +38,17 @@ dependencies-post:: ;
 .dependencies: composer-install ;
 
 distclean: composer-distclean
+test: test-pre .test test-post
+test-pre:: ;
+test-post:: ;
+.test: phpunit-test ;
 
 .PHONY: \
 $(PROJECT_TYPE) \
 setup-message \
 setup \
-dependencies dependencies-pre .dependencies dependencies-post
+dependencies dependencies-pre .dependencies dependencies-post \
+test test-pre .test test-post
 
 define COMPOSER_JSON
 {
@@ -64,6 +70,7 @@ define COMPOSER_JSON
 		"php": ">=5.6.0"
 	},
 	"require-dev": {
+		"phpunit/phpunit": "^$(PHPUNIT_VERSION)"
 	},
 	"support": {
 		"email": "$(shell git config --get user.email)"
@@ -78,6 +85,7 @@ composer.json:
 define MAKEFILE
 SHELL = $(SHELL)
 COMPOSER_VERSION = $(COMPOSER_VERSION)
+PHPUNIT_VERSION = $(PHPUNIT_VERSION)
 
 include $(SELF)
 
@@ -92,6 +100,12 @@ composer-validate-post:: ;
 
 dependencies-pre:: ;
 dependencies-post:: ;
+
+phpunit-test-pre:: ;
+phpunit-test-post:: ;
+
+test-pre:: ;
+test-post:: ;
 endef
 export MAKEFILE
 Makefile:
