@@ -4,7 +4,7 @@ SELF := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 PROJECT_TYPE := $(notdir $(basename $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))))
 
-.DEFAULT_GOAL = composer-validate
+.DEFAULT_GOAL = test
 
 include $(DIR)../git.mk
 include $(DIR)../terminal.mk
@@ -94,6 +94,8 @@ COMPOSER_VERSION = $(COMPOSER_VERSION)
 PHPUNIT_VERSION = $(PHPUNIT_VERSION)
 
 include $(SELF)
+
+.DEFAULT_GOAL = $(.DEFAULT_GOAL)
 
 clean-pre:: ;
 clean-post:: ;
