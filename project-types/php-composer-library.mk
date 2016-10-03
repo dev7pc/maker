@@ -28,16 +28,20 @@ composer.json
 	$(DONE)
 
 clean: clean-pre .clean clean-post
-clean-pre::
-clean-post::
-.clean: composer-clean
+clean-pre:: ;
+clean-post:: ;
+.clean: composer-clean ;
+
+distclean: distclean-pre .distclean distclean-post
+distclean-pre:: ;
+distclean-post:: ;
+.distclean: composer-distclean ;
 
 dependencies: dependencies-pre .dependencies dependencies-post
 dependencies-pre:: ;
 dependencies-post:: ;
 .dependencies: composer-install ;
 
-distclean: composer-distclean
 test: test-pre .test test-post
 test-pre:: ;
 test-post:: ;
@@ -47,7 +51,9 @@ test-post:: ;
 $(PROJECT_TYPE) \
 setup-message \
 setup \
+clean clean-pre .clean clean-post \
 dependencies dependencies-pre .dependencies dependencies-post \
+distclean distclean-pre .distclean distclean-post \
 test test-pre .test test-post
 
 define COMPOSER_JSON
@@ -100,6 +106,9 @@ composer-validate-post:: ;
 
 dependencies-pre:: ;
 dependencies-post:: ;
+
+distclean-pre:: ;
+distclean-post:: ;
 
 phpunit-test-pre:: ;
 phpunit-test-post:: ;
