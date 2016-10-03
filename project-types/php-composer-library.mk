@@ -31,11 +31,10 @@ clean-pre::
 clean-post::
 .clean: composer-clean
 
-composer-validate: composer-validate-pre .composer-validate composer-validate-post
-composer-validate-pre:: ;
-composer-validate-post:: ;
-.composer-validate: $(COMPOSER_FILENAME) composer.json
-	@php '$<' validate
+dependencies: dependencies-pre .dependencies dependencies-post
+dependencies-pre:: ;
+dependencies-post:: ;
+.dependencies: composer-install ;
 
 distclean: composer-distclean
 
@@ -43,10 +42,7 @@ distclean: composer-distclean
 $(PROJECT_TYPE) \
 setup-message \
 setup \
-composer-validate \
-composer-validate-pre \
-.composer-validate \
-composer-validate-post
+dependencies dependencies-pre .dependencies dependencies-post
 
 define COMPOSER_JSON
 {
@@ -88,8 +84,14 @@ include $(SELF)
 clean-pre:: ;
 clean-post:: ;
 
+composer-install-pre:: ;
+composer-install-post:: ;
+
 composer-validate-pre:: ;
 composer-validate-post:: ;
+
+dependencies-pre:: ;
+dependencies-post:: ;
 endef
 export MAKEFILE
 Makefile:

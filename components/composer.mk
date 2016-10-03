@@ -13,6 +13,8 @@ COMPOSER_VERSIONED_FILENAME = $(COMPOSER_FILENAME_PREFIX)$(COMPOSER_VERSION)$(CO
 
 .PHONY: \
 $(COMPOSER_FILENAME) \
+composer-validate composer-validate-pre .composer-validate composer-validate-post \
+composer-install composer-install-pre .composer-install composer-install-post \
 composer-clean \
 composer-distclean
 
@@ -56,6 +58,34 @@ $(COMPOSER_VERSIONED_FILENAME)
 	$(DONE)
 	$(call GITIGNORE_ADD,$@)
 endif
+
+composer-validate: \
+composer-validate-pre \
+.composer-validate \
+composer-validate-post
+
+composer-validate-pre:: ;
+
+composer-validate-post:: ;
+
+.composer-validate: \
+$(COMPOSER_FILENAME) \
+composer.json
+	@php '$<' validate
+
+composer-install: \
+composer-install-pre \
+.composer-install \
+composer-install-post
+
+composer-install-pre:: ;
+
+composer-install-post:: ;
+
+.composer-install: \
+$(COMPOSER_FILENAME) \
+composer.json
+	@php '$<' install
 
 composer-clean:
 	$(call STATUS,'Removing downloaded Composer files')
