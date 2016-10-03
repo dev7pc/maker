@@ -1,7 +1,5 @@
 SHELL = /bin/bash
 
-DIR := $(dir $(lastword $(MAKEFILE_LIST)))
-
 COMPOSER_FILENAME ?= composer.phar
 COMPOSER_VERSION ?= 1.2.1
 
