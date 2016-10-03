@@ -8,5 +8,5 @@ phpunit-test phpunit-test-pre .phpunit-test phpunit-test-post
 phpunit-test: phpunit-test-pre .phpunit-test phpunit-test-post
 phpunit-test-pre:: ;
 phpunit-test-post:: ;
-.phpunit-test: composer-dependencies
+.phpunit-test: composer-install
 	@php vendor/bin/phpunit --bootstrap=vendor/autoload.php _tests/
