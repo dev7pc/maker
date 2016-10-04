@@ -1,6 +1,6 @@
 SHELL = /bin/bash
 
-PHPUNIT_VERSION ?= 5.5.5
+PHPUNIT_VERSION ?= 5.5.6
 
 .PHONY: \
 phpunit-test phpunit-test-pre .phpunit-test phpunit-test-post
