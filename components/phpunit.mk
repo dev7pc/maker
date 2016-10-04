@@ -19,4 +19,6 @@ phpunit-test-post:: ;
 composer-install
 	@php '$(COMPOSER_FILENAME)' exec phpunit -- \
 		--bootstrap="$$(php '$(COMPOSER_FILENAME)' config vendor-dir)/autoload.php" \
+		--colors=auto \
+		--debug \
 		'$(TEST_DIR)'
