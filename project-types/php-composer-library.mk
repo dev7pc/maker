@@ -25,7 +25,7 @@ CHANGELOG.md \
 COPYING \
 Makefile \
 composer.json
-	@mkdir '{$(TEST_DIR),src}'
+	@mkdir {'$(TEST_DIR)',src}
 	$(DONE)
 
 clean: clean-pre .clean clean-post
