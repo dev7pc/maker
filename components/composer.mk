@@ -86,6 +86,7 @@ composer-install-post:: ;
 $(COMPOSER_FILENAME) \
 composer.json
 	@php '$<' install
+	$(call GITIGNORE_ADD,$(shell php '$(COMPOSER_FILENAME)' config vendor-dir)/)
 
 composer-clean:
 	$(call STATUS,'Removing downloaded Composer files')
