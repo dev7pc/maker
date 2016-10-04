@@ -25,6 +25,7 @@ CHANGELOG.md \
 COPYING \
 Makefile \
 composer.json
+	@mkdir '$(TEST_DIR)'
 	$(DONE)
 
 clean: clean-pre .clean clean-post
@@ -92,6 +93,7 @@ define MAKEFILE
 SHELL = $(SHELL)
 COMPOSER_VERSION = $(COMPOSER_VERSION)
 PHPUNIT_VERSION = $(PHPUNIT_VERSION)
+TEST_DIR = $(TEST_DIR)
 
 include $(SELF)
 
