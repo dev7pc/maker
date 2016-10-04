@@ -17,6 +17,6 @@ phpunit-test-post:: ;
 
 .phpunit-test: \
 composer-install
-	@php '$(COMPOSER_FILENAME)' exec phpunit \
+	@php '$(COMPOSER_FILENAME)' exec phpunit -- \
 		--bootstrap="$$(php '$(COMPOSER_FILENAME)' config vendor-dir)/autoload.php" \
 		'$(TEST_DIR)'
