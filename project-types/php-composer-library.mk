@@ -74,7 +74,7 @@ define COMPOSER_JSON
 	"license": "Unlicense",
 	"name": "sevenpercent/$(notdir $(realpath ./))",
 	"require": {
-		"php": ">=5.6.0"
+		"php": ">=7.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^$(PHPUNIT_VERSION)"
