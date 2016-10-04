@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 PHPUNIT_VERSION ?= 5.5.6
-TEST_DIR ?= _tests/
+TEST_DIR ?= _tests
 
 .PHONY: \
 phpunit-test phpunit-test-pre .phpunit-test phpunit-test-post
@@ -21,4 +21,4 @@ composer-install
 		--bootstrap="$$(php '$(COMPOSER_FILENAME)' config vendor-dir)/autoload.php" \
 		--colors=always \
 		--debug \
-		'$(TEST_DIR)'
+		'$(TEST_DIR)/'
